@@ -2,7 +2,7 @@
 <!--complete logic for category view-->
 <% if (title == 'Create Comment') { %>
     <div class="col-sm-8">    
-        <div class="jumbotron">
+        <div>
             
         </div>
     </div>
@@ -10,15 +10,15 @@
      
 <% } else if (title == 'Update Comment') { %>
     <div class="col-sm-8">    
-        <div class="jumbotron">
+        <div >
             <form action="/comment/<%= comment.id %>/update" method="post">
               Comment Title:<br>
-              <input type="text" name="comment_title" placeholder="<%= comment.comment_title %>">
+              <input type="text" id="button" name="comment_title" placeholder="<%= comment.comment_title %>">
               <br><br>
               Comment Body:<br>
-              <input type="text" name="comment_body" placeholder="<%= comment.comment_body %>">
+              <input type="text" id="button" name="comment_body" placeholder="<%= comment.comment_body %>">
               <br><br>
-              <input type="submit" value="Update Comment">
+              <input type="submit" id="button" value="Update Comment">
             </form>
         </div>
     </div>

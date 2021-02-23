@@ -7,8 +7,10 @@ var async = require('async');
 exports.document_create_get = async function(req, res, next) {
         // renders a document form
         const employees = await models.Employee.findAll();
+        const types = await models.Type.findAll();
+        const applications = await models.Application.findAll();
         const categories = await models.Category.findAll();
-        res.render('forms/document_form', { title: 'Create Document', employees: employees, categories: categories,  layout: 'layouts/detail'});
+        res.render('forms/document_form', { title: 'Create Document', employees: employees, types: types, applications: applications, categories: categories,  layout: 'layouts/detail'});
         console.log("Document form renders successfully")
 };
 
@@ -16,11 +18,14 @@ exports.document_create_get = async function(req, res, next) {
 exports.document_create_post = async function( req, res, next) {
     console.log("This is employee id " + req.body.employee_id)
     let employee_id = req.body.employee_id;
+ 
     const document = await models.Document.create({
             subject: req.body.subject,
             description: req.body.description,
-            status: req.body.status,
-            EmployeeId: req.body.employee_id
+            status: "draft",
+            EmployeeId: req.body.employee_id,
+            TypeId: req.body.type_id,
+            ApplicationId:req.body.application_id
         } 
     );
     
@@ -221,6 +226,14 @@ exports.document_detail = function(req, res, next) {
                       attributes: ['id', 'first_name', 'last_name']
                     },
                     {
+                      model: models.Type,
+                      attributes: ['id', 'type_name']
+                    },
+                    {
+                      model: models.Application,
+                      attributes: ['id', 'app_type']
+                    },
+                    {
                       model: models.Category,
                       as: 'categories',
                       required: false,
@@ -256,6 +269,14 @@ exports.document_list = function(req, res, next) {
                   model: models.Employee,
                   attributes: ['id', 'first_name', 'last_name']
                 },
+                {
+                  model: models.Type,
+                  attributes: ['id', 'type_name']
+                },
+                {
+                  model: models.Application,
+                  attributes: ['id', 'app_type']
+                },
                  {
                       model: models.Category,
                       as: 'categories',
@@ -289,13 +310,13 @@ exports.index = function(req, res) {
       models.Document.findAndCountAll(
       ).then(function(documentCount)
       {
-        models.Employee.findAndCountAll(
+      models.Employee.findAndCountAll(
       ).then(function(employeeCount)
       {
-        models.Comment.findAndCountAll(
+      models.Comment.findAndCountAll(
       ).then(function(commentCount)
       {
-        models.Category.findAndCountAll(
+      models.Category.findAndCountAll(
       ).then(function(categoryCount)
       {
         // find the count of employees in database
@@ -323,6 +344,3 @@ exports.index = function(req, res) {
     
     
 };
-
-
- 

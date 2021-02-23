@@ -22,6 +22,8 @@ var router  = express.Router();
 
 var employee_controller = require('../controllers/employeeController');
 var document_controller = require('../controllers/documentController');
+var type_controller = require('../controllers/typeController');
+var application_controller = require('../controllers/applicationController');
 var category_controller = require('../controllers/categoryController');
 var comment_controller = require('../controllers/commentController');
 
@@ -79,6 +81,60 @@ router.get('/document/:document_id', document_controller.document_detail);
 
 // GET request for list of all Documents.
 router.get('/documents', document_controller.document_list);
+
+
+// TYPE ROUTE
+
+// GET request for creating a Type 
+router.get('/type/create', type_controller.type_create_get);
+
+// POST request for creating Type
+router.post('/type/create', type_controller.type_create_post);
+
+// GET request to delete Type
+router.get('/type/:type_id/delete', type_controller.type_delete_get);
+
+// POST request to delete Type
+router.post('/type/:type_id/delete', type_controller.type_delete_post);
+
+// GET request to update Type
+router.get('/type/:type_id/update', type_controller.type_update_get);
+
+// POST request to update Type
+router.post('/type/:type_id/update', type_controller.type_update_post);
+
+// GET request for one Type
+router.get('/type/:type_id', type_controller.type_detail);
+
+// GET request for list of all Types
+router.get('/types', type_controller.type_list);
+
+
+// APPLICATION ROUTE
+
+// GET request for creating an Application 
+router.get('/application/create', application_controller.application_create_get);
+
+// POST request for creating Application
+router.post('/application/create', application_controller.application_create_post);
+
+// GET request to delete Application
+router.get('/application/:application_id/delete', application_controller.application_delete_get);
+
+// POST request to delete Application
+router.post('/application/:application_id/delete', application_controller.application_delete_post);
+
+// GET request to update Application
+router.get('/application/:application_id/update', application_controller.application_update_get);
+
+// POST request to update Application
+router.post('/application/:application_id/update', application_controller.application_update_post);
+
+// GET request for one Application
+router.get('/application/:application_id', application_controller.application_detail);
+
+// GET request for list of all Applications
+router.get('/applications', application_controller.application_list);
 
 
 // CATEGORY ROUTES

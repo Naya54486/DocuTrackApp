@@ -103,6 +103,8 @@ exports.employee_list = function(req, res, next) {
 exports.employee_detail = async function(req, res, next) {
             
          const categories = await models.Category.findAll();
+         const types = await models.Type.findAll()
+         const applications = await models.Application.findAll()
          
          models.Employee.findById(
                 req.params.employee_id, {
@@ -114,7 +116,7 @@ exports.employee_detail = async function(req, res, next) {
                 }
         ).then(function(employee) {
         console.log(employee);
-        res.render('pages/employee_detail', { title: 'Employee Details', categories: categories, employee: employee, layout: 'layouts/detail'} );
+        res.render('pages/employee_detail', { title: 'Employee Details', types: types, applications: applications, categories: categories, employee: employee, layout: 'layouts/detail'} );
         console.log("employee deteials renders successfully");
         });
 };

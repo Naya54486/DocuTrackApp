@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     subject: DataTypes.STRING,
     description: DataTypes.STRING,
     status: DataTypes.STRING,
-    EmployeeId: DataTypes.INTEGER 
+    EmployeeId: DataTypes.INTEGER, 
+    TypeId: DataTypes.INTEGER,
+    ApplicationId: DataTypes.INTEGER
   });
 
 
@@ -17,6 +19,19 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
     
+    models.Document.belongsTo(models.Type, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+    models.Document.belongsTo(models.Application, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
     
     models.Document.belongsToMany(models.Category,{ 
       as: 'categories', 

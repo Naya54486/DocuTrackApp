@@ -2,12 +2,12 @@
 <!--complete logic for category view-->
 <% if (title == 'Create Category') { %>
     <div class="col-sm-8">    
-        <div class="jumbotron">
+        <div>
             <form action="" method="post">
               Category Name:<br>
-              <input type="text" name="name" placeholder="Category Name">
+              <input type="text" id="button" name="name" placeholder="Category Name">
               <br><br>
-              <input type="submit" value="Create Category">
+              <input type="submit" id="button" value="Create Category">
             </form>
         </div>
     </div>
@@ -15,12 +15,12 @@
      
 <% } else if (title == 'Update Category') { %>
     <div class="col-sm-8">    
-        <div class="jumbotron">
+        <div>
             <form action="/category/<%= category.id %>/update" method="post">
                Category Name:<br>
-              <input type="text" name="name" value="<%= category.name %>">
+              <input type="text" id="button" name="name" value="<%= category.name %>">
               <br><br>
-              <input type="submit" value="Update Category">
+              <input type="submit" id="button" value="Update Category">
             </form>
         </div>
     </div>

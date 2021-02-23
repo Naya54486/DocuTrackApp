@@ -1,25 +1,25 @@
 <!--EMPLOYEE VIEW STARTS HERE -->
 <!--complete logic for employee view-->
 <% if (title == 'Create Employee') { %>
-    <div class="col-sm-8">
-        <div class="jumbotron">
+    <div class="col-sm-8" id="button" >
+        <div>
             <form action="" method="post">
               First Name:<br>
-              <input type="text" name="first_name" placeholder="First Name">
+              <input type="text" id="button" name="first_name" placeholder="First Name">
               <br>
               Last Name:<br>
-              <input type="text" name="last_name" placeholder="Last Name">
+              <input type="text" id="button" name="last_name" placeholder="Last Name">
               <br>
               Username:<br>
-              <input type="text" name="username" placeholder="Username">
+              <input type="text" id="button" name="username" placeholder="Username">
               <br>
               Email:<br>
-              <input type="text" name="email" placeholder="email@email.com">
+              <input type="text" id="button" name="email" placeholder="email@email.com">
               <br>
               Password:<br>
-              <input type="text" name="password" placeholder="password">
+              <input type="text" id="button" name="password" placeholder="password">
               <br><br>
-              <input type="submit" value="Create Employee">
+              <input type="submit" id="button" value="Create Employee">
             </form>
         </div>
     </div>
@@ -28,18 +28,18 @@
 
 <% } else if (title == 'Update Employee') { %>
     <div class="col-sm-8">
-        <div class="jumbotron">
-            <form action=""/employee/<%= embloyee.id %>/update"" method="post">
+        <div class="">
+            <form action=""/employee/<%= employee.id %>/update"" method="post">
               First Name:<br>
-              <input type="text" name="first_name" value="<%= employee.first_name %>">
+              <input type="text" id="button" name="first_name" value="<%= employee.first_name %>">
               <br>
               Last Name:<br>
-              <input type="text" name="last_name" value="<%= employee.last_name %>">
+              <input type="text" id="button" name="last_name" value="<%= employee.last_name %>">
               <br>
               Username:<br>
-              <input type="text" name="username" value="<%= employee.username %>">
+              <input type="text" id="button" name="username" value="<%= employee.username %>">
               <br><br>
-              <input type="submit" value="Update Employee">
+              <input type="submit" id="button" value="Update Employee">
             </form>
         </div>
     </div>
@@ -84,13 +84,13 @@
         
         <form action="/document/create" method="post">
                 Subject:<br>
-                <input type="text" name="subject" placeholder="Subject">
+                <input type="text" id="button" name="subject" placeholder="Subject">
                 <br><br/>
                 Description:<br>
-                <input type="text" name="description" placeholder="Description">
+                <textarea type="text" id="button" rows="4" cols="50" name="description" placeholder="Description"></textarea>
                 <br><br>
                 Status:<br>
-                <input type="text" name="status" placeholder="status">
+                <input type="text" id="button" name="status" placeholder="status">
                 <br><br>
                 
                 <!--I DONT NEED TO LIST EMPLOYEES AGAIN - BECAUSE I AM ON A SINGLE EMPLOYEE PAGE, I WILL -->
@@ -102,18 +102,23 @@
                 <!--  <br/>-->
                 <!-- <#% }); %>-->
                 <!--  </select>-->
-                <input type="hidden" name="employee_id" value="<%= employee.id %>">
+                Type:<br>
+                <% types.forEach(function(type) { %>
+                <input type="radio" id="button" name="type_id" value="<%= type.id %>"> <%= type.type_name %>
+                <br/>
+               <% }); %>
+                </select>
+                <br><br>
+                <input type="hidden" id="button" name="employee_id" value="<%= employee.id %>">
                 Category:<br>
-                <div>
-                        <% categories.forEach(function(category) { %>
-                    <input type="checkbox" class='categoryCheckbox' name="categories" id="<%= category.id %>" value="<%= category.id %>">
-                    <label for="<%= category.name %>"><%= category.name %></label>
-                    
+                <select name = "category_id" id="button">
+                    <% categories.forEach(function(category) { %>
+                    <option  value="<%= category.id %>"><%= category.name %></option>  
                 <br/>
                 <% }); %>
-                    </div>
-                <br>
-                <input type="submit" value="Create Document" onClick="checkCat()">
+                </select>
+              <br><br>
+                <input type="submit" id="button" value="Create Document" onClick="checkCat()">
                 </form>
     </div>
 
